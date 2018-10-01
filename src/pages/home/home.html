@@ -1,14 +1,53 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Home Page
     </ion-title>
   </ion-navbar>
 </ion-header>
+<ion-content padding id="page1">
+  <div class="spacer" style="height:8px;" id="homePage-spacer8"></div>
+  <div id="homePage-container4">
+    <ion-list id="homePage-list6">
+      <ion-item id="homePage-list-item-container21">
+        <div id="homePage-markdown8" class="show-list-numbers-and-dots">
+          <p style="margin-top:0px;color:#000000;">
+            <strong> HIGHLIGHTS </strong>
+          </p>
+        </div>
+      </ion-item>
+      <ion-item color="none" id="homePage-list-item15">
+        <ion-thumbnail item-left>
+          <img />
+        </ion-thumbnail>
+        <h2>
+          InfoBanjir
+        </h2>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div class="spacer" style="height:8px;" id="homePage-spacer7"></div>
+  <div id="homePage-container9" style="text-align:center;">
+    <button id="homePage-button1" ion-button color="calm" large style="border-radius:10px 10px 10px 10px;height:70px;width:70px;" on-click="goToEvacuationSystem()">
+      <ion-icon name="map" style="font-size:50px;"></ion-icon>
+    </button>
+    <button id="homePage-button2" ion-button color="royal" large style="border-radius:10px 10px 10px 10px;height:70px;width:70px;" on-click="goToSocialSharing()">
+      <ion-icon name="share-alt" style="font-size:50px;"></ion-icon>
+    </button>
+    <button id="homePage-button3" ion-button color="energized" large style="border-radius:10px 10px 10px 10px;height:70px;width:70px;" on-click="goToDataDisplay()">
+      <ion-icon name="information-circle" style="font-size:50px;"></ion-icon>
+    </button>
+    <button id="homePage-button4" ion-button color="balanced" large style="border-radius:10px 10px 10px 10px;height:70px;width:70px;" on-click="goToHotlineInfo()">
+      <ion-icon name="call" style="font-size:50px;"></ion-icon>
+    </button>
+  </div>
+  <div class="spacer" style="height:8px;border-bottom: 2px solid grey;" id="homePage-spacer4"></div>
+  <div id="homePage-container13" style="text-align:center;">
+    <button id="homePage-button6" ion-button color="danger" large style="font-weight:600;font-size:100px;border-radius:300px 300px 300px 300px;height:300px;width:300px;"
+             (click)="doConfirm()">
+          SOS
+    </button>
+  </div>
+  <div class="spacer" style="height:8px;border-top: 2px solid grey;" id="homePage-spacer5"></div>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
 </ion-content>
