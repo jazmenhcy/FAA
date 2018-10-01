@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { WaterLevelPage } from '../water-level/water-level';
+import { RainfallLevelPage } from '../rainfall-level/rainfall-level';
+import { MapViewPage } from '../map-view/map-view';
+
 
 @Component({
   selector: 'page-data-display',
@@ -9,5 +13,15 @@ export class DataDisplayPage {
 
   constructor(public navCtrl: NavController) {
   }
-  
+
+  goToWaterLevel(params){
+    if (!params) params = {};
+    this.navCtrl.push(WaterLevelPage);
+  }goToRainFallLevel(params){
+    if (!params) params = {};
+    this.navCtrl.push(RainfallLevelPage);
+  }goToMapView(params){
+    if (!params) params = {};
+    this.navCtrl.push(MapViewPage);
+  }
 }

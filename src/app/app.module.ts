@@ -21,9 +21,28 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AlertController } from 'ionic-angular';
 import { SMS } from '@ionic-native/sms';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { ChartsModule } from 'ng2-charts';
+import { Camera } from '@ionic-native/camera';
+
 
 const firebase = {
- // your firebase web config
+// your firebase web config
+ apiKey: "AIzaSyDIVHrSGqitfUAAHadQJYQ2Xgwzc1Cuuj4",
+ authDomain:"fit5120-fb6c5.firebaseapp.com",
+ databaseURL: "https://fit5120-fb6c5.firebaseio.com",
+ projectId: "fit5120-fb6c5",
+ storageBucket: "fit5120-fb6c5.appspot.com",
+ messagingSenderId: "313472048617"
+
+ // apiKey: "AIzaSyBpLCpU_OzdXC_2vydfmmgnl7boZhm8HKs",
+ // authDomain:"flood-aid-application-ad8dc.firebaseapp.com",
+ // databaseURL: "https://fit5120-fb6c5.firebaseio.com",
+ // projectId: "flood-aid-application-ad8dc",
+ // storageBucket: "flood-aid-application-ad8dc.appspot.com",
+ // messagingSenderId: "213786807579"
+
 }
 
 @NgModule({
@@ -40,9 +59,10 @@ const firebase = {
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,7 +85,9 @@ const firebase = {
     Geolocation,
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationAccuracy,
+    Camera
   ]
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ import { EvacuationSystemPage } from '../evacuation-system/evacuation-system';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AlertController } from 'ionic-angular';
-import { SMS } from '@ionic-native/sms';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 
 @Component({
@@ -19,7 +19,25 @@ export class HomePage {
   public latitude:any;
   public longitude:any;
 
-  constructor(public alerCtrl: AlertController, public navCtrl: NavController, private sms: SMS, private geolocation: Geolocation, private sharingVar: SocialSharing) {
+  constructor(public alerCtrl: AlertController, public navCtrl: NavController, public locationAccuracy: LocationAccuracy, private geolocation: Geolocation, private sharingVar: SocialSharing) {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+
+      if(canRequest) {
+        // the accuracy option will be ignored by iOS
+        this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+          () => console.log('Request successful'),
+          error => console.log('Error requesting location permissions', error)
+        );
+      }
+
+    });
+    this.geolocation.getCurrentPosition().then((resp) => {
+       this.latitude=resp.coords.latitude;
+       this.longitude=resp.coords.longitude;
+    }).catch((error) => {
+      console.log('Error getting location'+JSON.stringify(error));
+    });
+
   }
   goToHotlineInfo(params){
     if (!params) params = {};
@@ -35,16 +53,6 @@ export class HomePage {
     this.navCtrl.push(EvacuationSystemPage);
   }
 
-  getLocation()
-  {
-   this.geolocation.getCurrentPosition().then((resp) => {
-      this.latitude=resp.coords.latitude;
-      this.longitude=resp.coords.longitude;
-   }).catch((error) => {
-     console.log('Error getting location'+JSON.stringify(error));
-   });
-  }
-
   whatsappShare(){
     this.sharingVar.shareViaWhatsAppToReceiver('+60149073870','Flood Aid Needed at this location! '+this.latitude+', '+this.longitude, null /*Image*/,  null /* url */)
       .then(()=>{
@@ -55,26 +63,16 @@ export class HomePage {
     }
 
   sendTextMessage(){
-      this.sharingVar.shareViaSMS('Flood Aid Needed at this location! '+this.latitude+', '+this.longitude,'+60149073870')
+    this.sharingVar.shareViaSMS('Flood Aid Needed at this location! '+this.latitude+', '+this.longitude,'+60149073870')
       .then(()=>{
       },
       ()=>{
          alert("SOS message sent failed")
       })
-      }
-
-  // sendTextMessage(){
-  //   this.sms.send('+60149073870','Flood Aid Needed at this location! '+this.latitude+', '+this.longitude)
-  //   .then(()=>{
-  //   },
-  //   ()=>{
-  //      alert("SOS message sent failed")
-  //   })
-  //   }
+    }
 
   todo()
   {
-    this.getLocation();
     this.whatsappShare();
     this.sendTextMessage()
   }

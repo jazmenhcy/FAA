@@ -6,21 +6,12 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <div class="spacer" style="height:8;" id="socialSharing-spacer11"></div>
-  <div id="socialSharing-container6" class="camera"></div>
-  <form id="socialSharing-form2">
-    <div class="spacer" style="height:8;" id="socialSharing-spacer12"></div>
-  </form>
-  <form id="socialSharing-form3">
-    <ion-item id="socialSharing-toggle2">
-      <ion-label>
-        Location Sharing
-      </ion-label>
-      <ion-toggle color="positive" checked="false"></ion-toggle>
-    </ion-item>
-  </form>
-  <button id="socialSharing-button10" ion-button color="positive" block>
-    <ion-icon name="navigate"></ion-icon>
-    Show Route
-  </button>
+  <img [src]="captureDataUrl"  *ngIf="captureDataUrl"/>
+
+  <button ion-button full (click)="takePhoto()">Take Photo</button>
+  <button ion-button full (click)="whatsappShare()" [disabled]="!captureDataUrl">WhatsApp share</button>
+  <button ion-button full (click)="facebookShare()" [disabled]="!captureDataUrl">Facebook share</button>
+  <button ion-button full (click)="twitterShare()" [disabled]="!captureDataUrl">Twitter share</button>
+  <button ion-button full (click)="instagramShare()" [disabled]="!captureDataUrl">Instagram share</button>
+
 </ion-content>

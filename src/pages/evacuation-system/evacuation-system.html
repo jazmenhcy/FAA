@@ -1,23 +1,26 @@
+
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Evacuation System
+     Evacuation System
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding id="page2">
-  <div class="spacer" style="height:8;" id="evacuationSystem-spacer10"></div>
-  <div id="evacuationSystem-container5" class="googlemap"></div>
-  <form id="evacuationSystem-form1">
-    <div class="spacer" style="height:8;" id="evacuationSystem-spacer9"></div>
-    <ion-searchbar placeholder="Search for nearby station" name="station_search" id="evacuationSystem-search1"></ion-searchbar>
-  </form>
-  <button id="evacuationSystem-button7" ion-button color="positive" block>
-    <ion-icon name="locate"></ion-icon>
-    Current Location
-  </button>
-  <button id="evacuationSystem-button8" ion-button color="positive" block>
-    <ion-icon name="navigate"></ion-icon>
-    Show Route
-  </button>
+
+<ion-content>
+    <ion-list>
+
+        <ion-item>
+            <ion-label floating>Destination</ion-label>
+            <ion-select [(ngModel)]="Destination">
+              <ion-option value="Sunway Pyramid">Sunway Pyramid</ion-option>
+              <ion-option value="Monash University Malaysia">Monash University Malaysia</ion-option>
+              <ion-option value="USJ7">USJ7</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    <button ion-button full (click)="calculateAndDisplayRoute()">Get Direction</button>
+
+    <div #map id="map"></div>
+
 </ion-content>

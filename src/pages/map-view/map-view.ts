@@ -9,5 +9,5 @@ export class MapViewPage {
 
   constructor(public navCtrl: NavController) {
   }
-  
+
 }
