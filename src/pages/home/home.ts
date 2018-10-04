@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { HotlineInfoPage } from '../hotline-info/hotline-info';
-import { DataDisplayPage } from '../data-display/data-display';
-import { SocialSharingPage } from '../social-sharing/social-sharing';
-import { EvacuationSystemPage } from '../evacuation-system/evacuation-system';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AlertController } from 'ionic-angular';
@@ -18,8 +14,11 @@ export class HomePage {
 
   public latitude:any;
   public longitude:any;
+  tabBarElement: any;
 
   constructor(public alerCtrl: AlertController, public navCtrl: NavController, public locationAccuracy: LocationAccuracy, private geolocation: Geolocation, private sharingVar: SocialSharing) {
+    this.tabBarElement = document.querySelector('.tabbar');
+
     this.locationAccuracy.canRequest().then((canRequest: boolean) => {
 
       if(canRequest) {
@@ -39,19 +38,28 @@ export class HomePage {
     });
 
   }
-  goToHotlineInfo(params){
-    if (!params) params = {};
-    this.navCtrl.push(HotlineInfoPage);
-  }goToDataDisplay(params){
-    if (!params) params = {};
-    this.navCtrl.push(DataDisplayPage);
-  }goToSocialSharing(params){
-    if (!params) params = {};
-    this.navCtrl.push(SocialSharingPage);
-  }goToEvacuationSystem(params){
-    if (!params) params = {};
-    this.navCtrl.push(EvacuationSystemPage);
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';
   }
+
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
+
+  SwitchEvac(){
+  this.navCtrl.parent.select(1); //Selects the first tab
+  }
+  SwitchData(){
+  this.navCtrl.parent.select(2); //Selects the first tab
+  }
+  SwitchSocial(){
+  this.navCtrl.parent.select(3); //Selects the first tab
+  }
+  SwitchHotline(){
+  this.navCtrl.parent.select(4); //Selects the first tab
+  }
+
 
   whatsappShare(){
     this.sharingVar.shareViaWhatsAppToReceiver('+60149073870','Flood Aid Needed at this location! '+this.latitude+', '+this.longitude, null /*Image*/,  null /* url */)

@@ -9,5 +9,5 @@ export class HotlineInfoPage {
 
   constructor(public navCtrl: NavController) {
   }
-  
+
 }

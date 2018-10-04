@@ -9,7 +9,8 @@ import { DataDisplayPage } from '../pages/data-display/data-display';
 import { HotlineInfoPage } from '../pages/hotline-info/hotline-info';
 import { WaterLevelPage } from '../pages/water-level/water-level';
 import { RainfallLevelPage } from '../pages/rainfall-level/rainfall-level';
-import { MapViewPage } from '../pages/map-view/map-view';
+import { DataAnalysisPage } from '../pages/data-analysis/data-analysis';
+import { TabsPage } from '../pages/tabs/tabs'
 
 import { Firebase } from '@ionic-native/firebase';
 
@@ -55,7 +56,8 @@ const firebase = {
     HotlineInfoPage,
     WaterLevelPage,
     RainfallLevelPage,
-    MapViewPage
+    DataAnalysisPage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,7 @@ const firebase = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    TabsPage,
     HomePage,
     EvacuationSystemPage,
     SocialSharingPage,
@@ -74,7 +77,7 @@ const firebase = {
     HotlineInfoPage,
     WaterLevelPage,
     RainfallLevelPage,
-    MapViewPage
+    DataAnalysisPage
   ],
   providers: [
     Firebase,

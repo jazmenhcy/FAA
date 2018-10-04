@@ -1,11 +1,20 @@
-<ion-header>
-  <ion-navbar>
+<ion-header transparent>
     <ion-title>
-      Rainfall Level
+      <p style="color:#ffffff; text-align:center;">Rainfall Level</p>
     </ion-title>
-  </ion-navbar>
 </ion-header>
 <ion-content padding id="page7">
+  <div class="spacer" style="height:5px;"></div>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Select Location</ion-label>
+            <ion-select [(ngModel)]="Location">
+              <ion-option value="SMK Seri Perak">B14 Batu Karau</ion-option>
+              <ion-option value="??">??</ion-option>
+              <ion-option value="??">??</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
         <div style="display: block;">
         <canvas baseChart width="100%" height="100%"
                     [datasets]="lineChartData"

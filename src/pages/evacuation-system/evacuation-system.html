@@ -1,25 +1,24 @@
-
 <ion-header>
-  <ion-navbar>
     <ion-title>
-     Evacuation System
+     <p style="color:#ffffff; text-align:center;">Evacuation System</p>
     </ion-title>
-  </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding class ="bg-image">
+  <div class="spacer" style="height:5px;"></div>
     <ion-list>
-
         <ion-item>
             <ion-label floating>Destination</ion-label>
             <ion-select [(ngModel)]="Destination">
-              <ion-option value="Sunway Pyramid">Sunway Pyramid</ion-option>
-              <ion-option value="Monash University Malaysia">Monash University Malaysia</ion-option>
-              <ion-option value="USJ7">USJ7</ion-option>
+              <ion-option value="SMK Seri Perak">SMK Seri Perak</ion-option>
+              <ion-option value="SMK Clifford">SMK Clifford</ion-option>
+              <ion-option value="SMK Raja Perempuan Kelsom">SMK Raja Perempuan Kelsom</ion-option>
             </ion-select>
         </ion-item>
     </ion-list>
-    <button ion-button full (click)="calculateAndDisplayRoute()">Get Direction</button>
+    <button center ion-button style="height:60px;width:100%;margin-top:20px;border:solid white;font-size:20px;font-weight:600;
+          background-image: url('../assets/imgs/ActionButton.png');background-repeat: no-repeat;background-position: center;background-size: auto;"
+    full (click)="calculateAndDisplayRoute()">Get Direction</button>
 
     <div #map id="map"></div>
 

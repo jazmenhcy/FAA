@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WaterLevelPage } from '../water-level/water-level';
 import { RainfallLevelPage } from '../rainfall-level/rainfall-level';
-import { MapViewPage } from '../map-view/map-view';
+import { DataAnalysisPage } from '../data-analysis/data-analysis';
 
 
 @Component({
@@ -20,8 +20,8 @@ export class DataDisplayPage {
   }goToRainFallLevel(params){
     if (!params) params = {};
     this.navCtrl.push(RainfallLevelPage);
-  }goToMapView(params){
+  }goToDataAnalysis(params){
     if (!params) params = {};
-    this.navCtrl.push(MapViewPage);
+    this.navCtrl.push(DataAnalysisPage);
   }
 }

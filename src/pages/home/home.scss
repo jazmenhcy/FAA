@@ -1,3 +1,8 @@
 page-home {
-
+  .bg-image {
+     background-image: url('../assets/imgs/HomeBackground.png');
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+  }
 }

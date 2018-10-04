@@ -6,4 +6,11 @@ page-evacuation-system {
     height: 60%;
     width: 100%;
   }
+
+  .bg-image {
+     background-image: url('../assets/imgs/EvacBackground.png');
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+  }
 }

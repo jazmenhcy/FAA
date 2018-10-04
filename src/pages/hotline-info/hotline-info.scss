@@ -1,3 +1,14 @@
 page-hotline-info {
-
+  .bg-image {
+     background-image: url('../assets/imgs/HotlineBackground.png');
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+  }
+  a:link {
+    color: #9ad3e8;
+  }
+  a:visited {
+    color: #999999;
+  }
 }
