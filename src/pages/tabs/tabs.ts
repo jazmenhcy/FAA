@@ -12,6 +12,7 @@ import { EvacuationSystemPage } from '../evacuation-system/evacuation-system';
 })
 export class TabsPage {
 
+    //Tabs Navigation pages
     tab1Root = HomePage;
     tab2Root = EvacuationSystemPage;
     tab3Root = DataDisplayPage;

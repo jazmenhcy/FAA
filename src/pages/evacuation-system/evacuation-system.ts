@@ -15,7 +15,7 @@ export class EvacuationSystemPage {
   latitude:any;
   longitude:any;
 
-  constructor(public navCtrl: NavController, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, private geolocation: Geolocation) { //background long + lat service
     this.geolocation.getCurrentPosition().then((resp) => {
        this.latitude=resp.coords.latitude;
        this.longitude=resp.coords.longitude;
@@ -24,7 +24,7 @@ export class EvacuationSystemPage {
     });
   }
 
-  calculateAndDisplayRoute() {
+  calculateAndDisplayRoute() {  //function to get direction between two location
       let that = this;
       let directionsService = new google.maps.DirectionsService;
       let directionsDisplay = new google.maps.DirectionsRenderer;

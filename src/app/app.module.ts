@@ -11,6 +11,7 @@ import { WaterLevelPage } from '../pages/water-level/water-level';
 import { RainfallLevelPage } from '../pages/rainfall-level/rainfall-level';
 import { DataAnalysisPage } from '../pages/data-analysis/data-analysis';
 import { TabsPage } from '../pages/tabs/tabs'
+import { MoreInfoPage } from '../pages/more-info/more-info';
 
 import { Firebase } from '@ionic-native/firebase';
 
@@ -49,6 +50,7 @@ const firebase = {
 @NgModule({
   declarations: [
     MyApp,
+    TabsPage,
     HomePage,
     EvacuationSystemPage,
     SocialSharingPage,
@@ -57,7 +59,7 @@ const firebase = {
     WaterLevelPage,
     RainfallLevelPage,
     DataAnalysisPage,
-    TabsPage
+    MoreInfoPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +79,8 @@ const firebase = {
     HotlineInfoPage,
     WaterLevelPage,
     RainfallLevelPage,
-    DataAnalysisPage
+    DataAnalysisPage,
+    MoreInfoPage
   ],
   providers: [
     Firebase,

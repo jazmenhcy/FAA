@@ -3,23 +3,13 @@
       <p style="color:#ffffff; text-align:center;">Social Sharing</p>
     </ion-title>
 </ion-header>
-<ion-content padding class ="bg-image" id="page3">
-    <p style="color:#FFFFFF; text-align:center; font-weight:600;">Take Photo before Share to Social Media</p>
+<ion-content padding class ="bg-image">
+    <p style="color:#FFFFFF; text-align:center; font-weight:600;">Take/Upload a Photo before sharing to Social Media</p>
   <img [src]="captureDataUrl"  *ngIf="captureDataUrl"/>
-  <button ion-button style="height:80px;width:100%%;margin-top:20px;border:solid white;font-size:20px;font-weight:600;
-        background-image: url('../assets/imgs/ActionButton.png');background-repeat: no-repeat;background-position: center;background-size: auto;"
-      full (click)="takePhoto()">Take Photo</button>
-  <button ion-button style="height:65px;width:100%;margin-top:20px;
-        background-image: url('../assets/imgs/WhatsappButton.png');background-repeat: no-repeat;background-position: center;background-size: cover;"
-      full (click)="whatsappShare()" [disabled]="!captureDataUrl"></button>
-  <button ion-button style="height:65px;width:100%;margin-top:20px;
-        background-image: url('../assets/imgs/FacebookButton.png');background-repeat: no-repeat;background-position: center;background-size: cover;"
-      full (click)="facebookShare()" [disabled]="!captureDataUrl"></button>
-  <button ion-button style="height:65px;width:100%;margin-top:20px;
-        background-image: url('../assets/imgs/TwitterButton.png');background-repeat: no-repeat;background-position: center;background-size: cover;"
-      full (click)="twitterShare()" [disabled]="!captureDataUrl"></button>
-  <button ion-button style="height:65px;width:100%;margin-top:20px;
-        background-image: url('../assets/imgs/InstagramButton.png');background-repeat: no-repeat;background-position: center;background-size: cover;"
-      full (click)="instagramShare()" [disabled]="!captureDataUrl"></button>
+  <button ion-button class="photo-button" full (click)="takePhoto()">Take Photo</button>
+  <button id="socialButton1" ion-button class="social-button" full (click)="whatsappShare()" [disabled]="!captureDataUrl"></button>
+  <button id="socialButton2" ion-button class="social-button" full (click)="facebookShare()" [disabled]="!captureDataUrl"></button>
+  <button id="socialButton3" ion-button class="social-button" full (click)="twitterShare()" [disabled]="!captureDataUrl"></button>
+  <button id="socialButton4" ion-button class="social-button" full (click)="instagramShare()" [disabled]="!captureDataUrl"></button>
 
 </ion-content>

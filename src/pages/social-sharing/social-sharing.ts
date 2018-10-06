@@ -27,7 +27,7 @@ export class SocialSharingPage {
                 });
                }
 
-  takePhoto() {
+  takePhoto() { //funtion to takephoto or upload from photo album
     const cameraOptions: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -44,6 +44,8 @@ export class SocialSharingPage {
     });
   }
 
+
+//sharing function using ionic-social-sharing plugin
   whatsappShare(){
     this.sharingVar.shareViaWhatsApp('Flood Aid Needed at this location! '+this.latitude+', '+this.longitude /*Message*/, this.captureDataUrl /*Image*/,  null /* url */)
       .then(()=>{

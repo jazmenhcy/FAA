@@ -19,7 +19,7 @@ export class HomePage {
   constructor(public alerCtrl: AlertController, public navCtrl: NavController, public locationAccuracy: LocationAccuracy, private geolocation: Geolocation, private sharingVar: SocialSharing) {
     this.tabBarElement = document.querySelector('.tabbar');
 
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => { //background location service request
 
       if(canRequest) {
         // the accuracy option will be ignored by iOS
@@ -30,7 +30,8 @@ export class HomePage {
       }
 
     });
-    this.geolocation.getCurrentPosition().then((resp) => {
+
+    this.geolocation.getCurrentPosition().then((resp) => {  //background function to get long + lat
        this.latitude=resp.coords.latitude;
        this.longitude=resp.coords.longitude;
     }).catch((error) => {
@@ -39,29 +40,29 @@ export class HomePage {
 
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter() {  //hide ion-tab on homepage when enter
     this.tabBarElement.style.display = 'none';
   }
 
-  ionViewWillLeave() {
+  ionViewWillLeave() {  //show ion-tab on homepage when exit
     this.tabBarElement.style.display = 'flex';
   }
 
   SwitchEvac(){
-  this.navCtrl.parent.select(1); //Selects the first tab
+  this.navCtrl.parent.select(1); //Selects the Evac tab
   }
   SwitchData(){
-  this.navCtrl.parent.select(2); //Selects the first tab
+  this.navCtrl.parent.select(2); //Selects the Data tab
   }
   SwitchSocial(){
-  this.navCtrl.parent.select(3); //Selects the first tab
+  this.navCtrl.parent.select(3); //Selects the Social tab
   }
   SwitchHotline(){
-  this.navCtrl.parent.select(4); //Selects the first tab
+  this.navCtrl.parent.select(4); //Selects the Hotline tab
   }
 
 
-  whatsappShare(){
+  whatsappShare(){  //Whatsapp sending function
     this.sharingVar.shareViaWhatsAppToReceiver('+60149073870','Flood Aid Needed at this location! '+this.latitude+', '+this.longitude, null /*Image*/,  null /* url */)
       .then(()=>{
       },
@@ -70,7 +71,7 @@ export class HomePage {
       })
     }
 
-  sendTextMessage(){
+  sendTextMessage(){ //SMS sending function
     this.sharingVar.shareViaSMS('Flood Aid Needed at this location! '+this.latitude+', '+this.longitude,'+60149073870')
       .then(()=>{
       },
@@ -79,13 +80,12 @@ export class HomePage {
       })
     }
 
-  todo()
-  {
+  todo(){ //send SOS through whatsapp and sms
     this.whatsappShare();
     this.sendTextMessage()
   }
 
-  doConfirm() {
+  doConfirm() { //confirmation message to ask user on SOS message sending
     let confirm = this.alerCtrl.create({
       title: 'Confirm send SOS Message?',
       message: 'Click Agree to Send.',
