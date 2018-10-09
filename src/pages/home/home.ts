@@ -4,7 +4,9 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AlertController } from 'ionic-angular';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
-
+import firebase from 'firebase/app';
+import 'firebase/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'page-home',
@@ -16,28 +18,45 @@ export class HomePage {
   public longitude:any;
   tabBarElement: any;
 
-  constructor(public alerCtrl: AlertController, public navCtrl: NavController, public locationAccuracy: LocationAccuracy, private geolocation: Geolocation, private sharingVar: SocialSharing) {
-    this.tabBarElement = document.querySelector('.tabbar');
-
-    this.locationAccuracy.canRequest().then((canRequest: boolean) => { //background location service request
-
-      if(canRequest) {
-        // the accuracy option will be ignored by iOS
-        this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-          () => console.log('Request successful'),
-          error => console.log('Error requesting location permissions', error)
-        );
+  constructor(
+    public alerCtrl: AlertController,
+    public navCtrl: NavController,
+    public locationAccuracy: LocationAccuracy,
+    private geolocation: Geolocation,
+    private sharingVar: SocialSharing) {
+      let db = firebase.firestore();
+      var docRef = db.collection("data_analysis").doc("SungaiSlim");
+      docRef.get().then(function(doc) {
+      if (doc.exists) {
+          console.log("Document data:", doc.data());
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
       }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
 
-    });
+      this.tabBarElement = document.querySelector('.tabbar');
 
-    this.geolocation.getCurrentPosition().then((resp) => {  //background function to get long + lat
-       this.latitude=resp.coords.latitude;
-       this.longitude=resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error getting location'+JSON.stringify(error));
-    });
+      this.locationAccuracy.canRequest().then((canRequest: boolean) => { //background location service request
 
+        if(canRequest) {
+          // the accuracy option will be ignored by iOS
+          this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+            () => console.log('Request successful'),
+            error => console.log('Error requesting location permissions', error)
+          );
+        }
+
+      });
+
+      this.geolocation.getCurrentPosition().then((resp) => {  //background function to get long + lat
+         this.latitude=resp.coords.latitude;
+         this.longitude=resp.coords.longitude;
+      }).catch((error) => {
+        console.log('Error getting location'+JSON.stringify(error));
+      });
   }
 
   ionViewWillEnter() {  //hide ion-tab on homepage when enter

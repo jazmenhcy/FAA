@@ -15,6 +15,7 @@ import { MoreInfoPage } from '../pages/more-info/more-info';
 
 import { Firebase } from '@ionic-native/firebase';
 
+// Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,9 +28,10 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { ChartsModule } from 'ng2-charts';
 import { Camera } from '@ionic-native/camera';
+import firebase from 'firebase/app';
 
-
-const firebase = {
+// AF2 Settings
+const firebaseConfig = {
 // your firebase web config
  apiKey: "AIzaSyDIVHrSGqitfUAAHadQJYQ2Xgwzc1Cuuj4",
  authDomain:"fit5120-fb6c5.firebaseapp.com",
@@ -37,15 +39,18 @@ const firebase = {
  projectId: "fit5120-fb6c5",
  storageBucket: "fit5120-fb6c5.appspot.com",
  messagingSenderId: "313472048617"
+};
 
- // apiKey: "AIzaSyBpLCpU_OzdXC_2vydfmmgnl7boZhm8HKs",
- // authDomain:"flood-aid-application-ad8dc.firebaseapp.com",
- // databaseURL: "https://fit5120-fb6c5.firebaseio.com",
- // projectId: "flood-aid-application-ad8dc",
- // storageBucket: "flood-aid-application-ad8dc.appspot.com",
- // messagingSenderId: "213786807579"
-
-}
+//Firebase setting
+var config = {
+  apiKey: "AIzaSyDIVHrSGqitfUAAHadQJYQ2Xgwzc1Cuuj4",
+  authDomain:"fit5120-fb6c5.firebaseapp.com",
+  databaseURL: "https://fit5120-fb6c5.firebaseio.com",
+  projectId: "fit5120-fb6c5",
+  storageBucket: "fit5120-fb6c5.appspot.com",
+  messagingSenderId: "313472048617"
+};
+firebase.initializeApp(config);
 
 @NgModule({
   declarations: [
@@ -64,7 +69,7 @@ const firebase = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
     ChartsModule
   ],

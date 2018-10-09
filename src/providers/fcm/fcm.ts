@@ -7,13 +7,21 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 @Injectable()
 export class FcmProvider {
-
+  public latitude:any;
+  public longitude:any;
   constructor(
     public firebaseNative: Firebase,
     public afs: AngularFirestore,
     public geolocation: Geolocation,
     private platform: Platform
-  ) {}
+  ) {
+    this.geolocation.getCurrentPosition().then((resp) => {
+       this.latitude=resp.coords.latitude;
+       this.longitude=resp.coords.longitude;
+    }).catch((error) => {
+      console.log('Error getting location'+JSON.stringify(error));
+    });
+  }
 
   async getToken() {
 
@@ -31,18 +39,21 @@ export class FcmProvider {
     return this.saveTokenToFirestore(token)
   }
 
-  async getLatLong(){
-    let latitudeX;
-    let longitudeY;
+  async getTokGeo(){
+    let geo;
+    let token;
 
-    this.geolocation.getCurrentPosition().then((resp) => {
-       latitudeX=resp.coords.latitude;
-       longitudeY=resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error getting location'+JSON.stringify(error));
-    });
+    if (this.platform.is('android')) {
+      token = await this.firebaseNative.getToken()
+    }
 
-    return this.saveLatLongToFirestore(latitudeX, longitudeY)
+    if (this.platform.is('ios')) {
+      token = await this.firebaseNative.getToken();
+      await this.firebaseNative.grantPermission();
+    }
+
+    geo = this.latitude+', '+this.longitude;
+    return this.saveTokGeoToFirestore(token, geo)
   }
 
   private saveTokenToFirestore(token) {
@@ -58,18 +69,16 @@ export class FcmProvider {
     return devicesRef.doc(token).set(docData)
   }
 
-  private saveLatLongToFirestore(x, y) {
-    if (!x && !y) return;
+  private saveTokGeoToFirestore(token, geo) {
 
-    const devicesRef = this.afs.collection('locations')
+    const devicesRef = this.afs.collection('tokenLocations')
 
     const docData = {
-      x,
-      y,
-      userId: 'testUser',
+      token,
+      geo,
     }
 
-    return devicesRef.doc(x).set(docData)
+    return devicesRef.doc(token).set(docData)
   }
 
   listenToNotifications() {

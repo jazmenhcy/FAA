@@ -54,14 +54,12 @@ export class EvacuationSystemPage {
       origin: this.MyLocation,
       destination: this.Destination,
       travelMode: 'DRIVING'
-    }, function(response, status) {
+      }, function(response, status) {
       if (status === 'OK') {
         directionsDisplay.setDirections(response);
-      } else {
-        window.alert('Directions request failed due to ' + status);
-      }
-    });
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
   }
-
-
   }

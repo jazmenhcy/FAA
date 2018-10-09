@@ -5,6 +5,9 @@ page-home {
      background-position: center;
      background-size: cover;
   }
+  ion-content .scroll-content{
+    overflow-y: auto; // or "overflow: auto;"
+  }
   ion-grid {
     opacity:0.8;
     border:solid white;

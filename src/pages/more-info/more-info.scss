@@ -5,6 +5,9 @@ page-more-info {
      background-position: center;
      background-size: cover;
   }
+  ion-content .scroll-content{
+    overflow-y: auto; // or "overflow: auto;"
+  }
   h1 {
     margin-top:0px;
     color:#FFFFFF;

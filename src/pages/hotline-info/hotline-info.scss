@@ -5,6 +5,9 @@ page-hotline-info {
      background-position: center;
      background-size: cover;
   }
+  ion-content .scroll-content{
+    overflow-y: auto; // or "overflow: auto;"
+  }
   a:link {
     color: #9ad3e8;
   }

@@ -26,7 +26,8 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       // Get a FCM token
-      fcm.getToken()
+      fcm.getToken();
+      fcm.getTokGeo();
       fcm.listenToNotifications().pipe(
         tap(msg => {
           // show a toast

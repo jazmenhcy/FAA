@@ -5,6 +5,9 @@ page-data-display {
      background-position: center;
      background-size: cover;
   }
+  ion-content .scroll-content{
+    overflow-y: auto; // or "overflow: auto;"
+  }
   .data-button {
     height:80px;
     width:100%;
