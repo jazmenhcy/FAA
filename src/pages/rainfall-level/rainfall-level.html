@@ -10,15 +10,18 @@
     <ion-list>
         <ion-item>
             <ion-label floating>Select Location</ion-label>
-            <ion-select [(ngModel)]="Location">
-              <ion-option value="SMK Seri Perak">B14 Batu Karau</ion-option>
-              <ion-option value="??">??</ion-option>
-              <ion-option value="??">??</ion-option>
+            <!-- <ion-select [(ngModel)]="rainLevel" (ionChange)='HandleSelection(rainLevel)'>
+              <ion-option *ngFor="let data of rainlevel" [value]="data">{{data.Location}}</ion-option>
+            </ion-select> -->
+            <ion-select [(ngModel)]="rainLevel">
+              <ion-option value="KualaPari">KualaPari</ion-option>
+              <ion-option value="Parit">Parit</ion-option>
             </ion-select>
         </ion-item>
     </ion-list>
-        <div style="display: block;">
-        <canvas baseChart width="100%" height="100%"
+        <div [ngSwitch]="rainLevel" style="display: block; background-color:#FFFFFF; border-radius:5px 5px 5px 5px;">
+        <canvas *ngSwitchCase="'KualaPari'"
+                    baseChart width="100%" height="100%"
                     [datasets]="lineChartData"
                     [labels]="lineChartLabels"
                     [options]="lineChartOptions"
@@ -27,5 +30,16 @@
                     [chartType]="lineChartType"
                     (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)"></canvas>
+        <canvas *ngSwitchCase="'Parit'"
+                    baseChart width="100%" height="100%"
+                    [datasets]="lineChartData2"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
         </div>
+        <p style="color:#FFFFFF; text-align:center;font-weight:600;">Hover Chart for detailed information.</p>
   </ion-content>

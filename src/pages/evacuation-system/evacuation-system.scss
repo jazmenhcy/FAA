@@ -2,6 +2,12 @@ page-evacuation-system {
   .scroll {
         height: 100%
       }
+  ion-card {
+    max-height: 200px;
+    width: 100%;
+    overflow: scroll;
+    z-index: 1;
+    }
   #map{
     height: 60%;
     width: 100%;

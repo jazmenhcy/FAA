@@ -4,9 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AlertController } from 'ionic-angular';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
-import firebase from 'firebase/app';
-import 'firebase/app';
-import 'firebase/firestore';
+import { AngularFirestore } from 'angularfire2/firestore'
 
 @Component({
   selector: 'page-home',
@@ -17,25 +15,22 @@ export class HomePage {
   public latitude:any;
   public longitude:any;
   tabBarElement: any;
+  _db:AngularFirestore;
+  datanalysis: any = [];
 
   constructor(
     public alerCtrl: AlertController,
     public navCtrl: NavController,
     public locationAccuracy: LocationAccuracy,
     private geolocation: Geolocation,
-    private sharingVar: SocialSharing) {
-      let db = firebase.firestore();
-      var docRef = db.collection("data_analysis").doc("SungaiSlim");
-      docRef.get().then(function(doc) {
-      if (doc.exists) {
-          console.log("Document data:", doc.data());
-      } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-      }
-      }).catch(function(error) {
-          console.log("Error getting document:", error);
-      });
+    private sharingVar: SocialSharing,
+    public db: AngularFirestore) {
+      db.collection<any>('data_analysis')
+        .valueChanges()
+        .subscribe(d => {
+          this.datanalysis = d;
+        });
+      this._db = db;
 
       this.tabBarElement = document.querySelector('.tabbar');
 

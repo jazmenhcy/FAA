@@ -6,8 +6,8 @@
 
 <ion-content padding class ="bg-image">
   <div class="spacer" style="height:5px;"></div>
-    <p style="color:#FFFFFF; text-align:center;font-weight:600;">Press the button 1st Time to launch Map</p>
-      <p style="color:#FFFFFF; text-align:center;font-weight:600;">Press 2nd Time to get Direction</p>
+    <p style="color:#FFFFFF; text-align:center;font-weight:600;">Wait for Map to Load</p>
+      <p style="color:#FFFFFF; text-align:center;font-weight:600;">Select Location to get Direction</p>
     <ion-list>
         <ion-item>
             <ion-label floating>Destination</ion-label>
@@ -21,7 +21,14 @@
     <button center ion-button style="height:60px;width:100%;margin-top:20px;border:solid white;font-size:20px;font-weight:600;
           background-image: url('../assets/imgs/ActionButton.png');background-repeat: no-repeat;background-position: center;background-size: auto;"
     full (click)="calculateAndDisplayRoute()">Get Direction</button>
-
+    
     <div #map id="map"></div>
+    <div>
+      <ion-card>
+          <ion-card-content>
+              <div #directionsPanel></div>
+          </ion-card-content>
+      </ion-card>
+    </div>
 
 </ion-content>

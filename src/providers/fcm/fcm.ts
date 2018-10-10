@@ -14,14 +14,14 @@ export class FcmProvider {
     public afs: AngularFirestore,
     public geolocation: Geolocation,
     private platform: Platform
-  ) {
-    this.geolocation.getCurrentPosition().then((resp) => {
-       this.latitude=resp.coords.latitude;
-       this.longitude=resp.coords.longitude;
-    }).catch((error) => {
-      console.log('Error getting location'+JSON.stringify(error));
-    });
-  }
+    ) {
+      this.geolocation.getCurrentPosition().then((resp) => {
+         this.latitude=resp.coords.latitude;
+         this.longitude=resp.coords.longitude;
+      }).catch((error) => {
+        console.log('Error getting location'+JSON.stringify(error));
+      });
+    }
 
   async getToken() {
 

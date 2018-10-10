@@ -28,7 +28,6 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { ChartsModule } from 'ng2-charts';
 import { Camera } from '@ionic-native/camera';
-import firebase from 'firebase/app';
 
 // AF2 Settings
 const firebaseConfig = {
@@ -40,17 +39,6 @@ const firebaseConfig = {
  storageBucket: "fit5120-fb6c5.appspot.com",
  messagingSenderId: "313472048617"
 };
-
-//Firebase setting
-var config = {
-  apiKey: "AIzaSyDIVHrSGqitfUAAHadQJYQ2Xgwzc1Cuuj4",
-  authDomain:"fit5120-fb6c5.firebaseapp.com",
-  databaseURL: "https://fit5120-fb6c5.firebaseio.com",
-  projectId: "fit5120-fb6c5",
-  storageBucket: "fit5120-fb6c5.appspot.com",
-  messagingSenderId: "313472048617"
-};
-firebase.initializeApp(config);
 
 @NgModule({
   declarations: [
